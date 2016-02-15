@@ -1,0 +1,100 @@
+package com.coc.abhi8.clashofplayers;
+
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.Toast;
+
+public class Setting extends AppCompatActivity {
+
+    public ImageButton saveClanTagButton;
+    public EditText clan_tag_input_text_java;
+    ListView clanTagListView;
+    ArrayAdapter<String> listAdapter;
+    String[] clanList;
+    StringBuilder clanListBuilder;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_setting);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.setting_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        final SharedPreferences settings = getSharedPreferences(MainActivity.PREFS_NAME, 0);
+
+        clanListBuilder = new StringBuilder();
+        clanTagListView=(ListView)findViewById(R.id.clan_list_list_view);
+        clan_tag_input_text_java = (EditText) findViewById(R.id.clan_tag_input_Text);
+        saveClanTagButton=(ImageButton)findViewById(R.id.add_to_clan_list_img_button);
+
+        if (settings.contains("CLAN_TAG")) {
+           // clan_tag_input_text_java.setText(settings.getString("CLAN_TAG", null).toString());
+        }
+
+        if(settings.contains("CLAN_TAG_LIST"))
+        {
+            clanListBuilder.append(settings.getString("CLAN_TAHG_LIST", null));
+            clanList=settings.getString("CLAN_TAG_LIST",null).toString().split(",");
+            refreshClanList();
+        }
+
+        saveClanTagButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clanListBuilder.append(clan_tag_input_text_java.getText()+",");
+                clanList=clanListBuilder.toString().split(",");
+                SharedPreferences.Editor editor=settings.edit();
+                editor.putString("CLAN_TAG_LIST",clanListBuilder.toString());
+                editor.commit();
+                refreshClanList();
+            }
+        });
+
+        clanTagListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putString("CLAN_TAG", clanList[position].toString());
+                editor.commit();
+            }
+        });
+
+        clanTagListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                
+                clanList.
+//                String deletedClanStringArray[]=new String[clanTagListView.getCount()-1];
+//                for(int i=0; i < listView.getCount(); i++)
+//                {
+//                    View v = list.getChildAt(i);
+//                    TextView tv= (TextView) v.findViewById(R.id.item);
+//                    stringArray[i] = tv.getText();
+//                }
+                return false;
+            }
+        });
+
+    }
+
+    public void refreshClanList()
+    {
+        listAdapter = new ArrayAdapter<String>(Setting.this,android.R.layout.simple_list_item_1, clanList);
+        clanTagListView.setAdapter(listAdapter);
+    }
+
+
+}
