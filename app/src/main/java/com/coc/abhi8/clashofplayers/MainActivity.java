@@ -1,14 +1,18 @@
 package com.coc.abhi8.clashofplayers;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -24,13 +28,16 @@ public class MainActivity extends AppCompatActivity {
     public static String _response;
     public String clanTag;
     private ListView listView;
+    ImageView clanBadgeImage;
+
+    TextView clan_name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-
         listView = (ListView) findViewById(R.id.player_listView);
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
@@ -38,12 +45,15 @@ public class MainActivity extends AppCompatActivity {
         {
             clanTag=settings.getString("CLAN_TAG",null);
             Toast.makeText(this,clanTag,Toast.LENGTH_SHORT).show();
-            JSON_URL="https://set7z18fgf.execute-api.us-east-1.amazonaws.com/prod/?route=getClanDetails&clanTag=%23"+clanTag;
+            JSON_URL="https://set7z18fgf.execute-api.us-east-1.amazonaws.com/prod/?route=getClanDetails&clanTag=%23"+clanTag.trim().toUpperCase();
+            //Toast.makeText(this,JSON_URL,Toast.LENGTH_SHORT).show();
+            sendRequest();
         }
         else
         {
             Toast.makeText(this,"Save Clan Tag in Setting",Toast.LENGTH_SHORT).show();
         }
+
 
     }
 
@@ -99,6 +109,20 @@ public class MainActivity extends AppCompatActivity {
         ParsePlayerList pj = new ParsePlayerList(json);
         pj.parseJSON();
         PopulatePlayerListView cl = new PopulatePlayerListView(this, ParsePlayerList.playerArrayList);
+        clan_name=(TextView)findViewById(R.id.clan_name_text_view_header);
+
+        //setClanHeader
+        //=====================================//
+        //setName
+        clan_name=(TextView)findViewById(R.id.clan_name_text_view_header);
+        clan_name.setTypeface(PopulatePlayerListView.myTypeface);
+        clan_name.setText(ParsePlayerList.thisClan.getC_name());
+
+        //set clanBadge Image
+        clanBadgeImage=(ImageView)findViewById(R.id.clan_badge_image_header);
+        PopulatePlayerListView.imageLoader.displayImage(ParsePlayerList.thisClan.getC_clanBadge(),clanBadgeImage,PopulatePlayerListView.options);
+
         listView.setAdapter(cl);
+
     }
 }

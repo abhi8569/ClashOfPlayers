@@ -4,6 +4,8 @@ package com.coc.abhi8.clashofplayers;
  * Created by abhi8 on 2/8/2016.
  */
 
+import android.widget.TextView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,7 +32,7 @@ public class ParsePlayerList {
     public static final String KEY_DONATIONS = "donations";
     public static final String KEY_DONATIONSRECEIVED= "donationsReceived";
     public static final String KEY_LEAGUEBADGEIMG= "leagueBadgeImg";
-
+    public static Clan thisClan;
     public static Player[] playerArrayList;
 
 
@@ -45,11 +47,20 @@ public class ParsePlayerList {
 
     protected void parseJSON(){
         JSONObject jsonObject=null;
+        JSONObject clanJsonObject=null;
         try {
             jsonObject = new JSONObject(playerJSON);
             jsonObject = jsonObject.getJSONObject("clanDetails");
             jsonObject = jsonObject.getJSONObject("results");
+            clanJsonObject=jsonObject;
             users = jsonObject.getJSONArray(JSON_ARRAY);
+
+            thisClan=new Clan();
+            thisClan.setC_name(clanJsonObject.getString("name"));
+
+
+            clanJsonObject=clanJsonObject.getJSONObject("clanBadgeImg");
+            thisClan.setC_clanBadge(clanJsonObject.getString("xl"));
 
             playerArrayList=new Player[users.length()];
 

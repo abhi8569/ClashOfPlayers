@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="#FFD588"
     tools:context="com.coc.abhi8.clashofplayers.MainActivity">
 
     <android.support.v7.widget.Toolbar
@@ -15,27 +15,44 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-
-
-    <Button
+    <LinearLayout
+        android:id="@+id/setting_clan_entr_txt_lnear_lyt"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="save"
-        android:id="@+id/save_clan_tag_button"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:id="@+id/clan_tag_input_Text"
-        android:textColor="#000000"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-        android:layout_above="@+id/save_clan_tag_button"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="53dp"
-        android:hint="@string/setting_text_hint"
-        android:textColorHint="#FFA210"/>
+        android:layout_below="@id/setting_toolbar">
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:id="@+id/clan_tag_input_Text"
+            android:textColor="@android:color/black"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="bottom"
+            android:hint="@string/setting_text_hint"
+            android:textColorHint="#cccccc"/>
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/add_button"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/add_to_clan_list_img_button"/>
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/clan_list_list_view"
+        android:background="#FFD588"
+        android:divider="@drawable/list_view_seperator"
+        android:dividerHeight="2dp"
+        android:layout_margin="5dp"
+        android:layout_below="@+id/setting_clan_entr_txt_lnear_lyt"/>
+
 
 
 </RelativeLayout>

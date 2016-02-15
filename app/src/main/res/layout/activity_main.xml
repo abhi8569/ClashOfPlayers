@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="#FFD588"
+    android:orientation="vertical"
     tools:context="com.coc.abhi8.clashofplayers.MainActivity">
 
     <android.support.v7.widget.Toolbar
@@ -15,12 +16,38 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/clan_detail_header">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/clan_badge_image_header"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="5dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/clan_name_text_view_header"
+            android:text="      "
+            android:layout_toEndOf="@+id/clan_badge_image_header"
+            android:layout_toRightOf="@+id/clan_badge_image_header"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/player_listView"
-        android:background="@android:color/black"
-        android:layout_below="@+id/my_toolbar"
-        android:layout_alignParentStart="true" />
+        android:background="#FFD588"
+        android:divider="@drawable/list_view_seperator"
+        android:dividerHeight="2px"
+        />
 
-</RelativeLayout>
+</LinearLayout>
