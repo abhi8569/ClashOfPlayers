@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
     ImageView clanBadgeImage;
 
-    TextView clan_name;
+    TextView clan_name,clan_description,clan_type,clan_location,clan_frequency,clan_wins,clan_point,clan_reqtrop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +117,36 @@ public class MainActivity extends AppCompatActivity {
         clan_name=(TextView)findViewById(R.id.clan_name_text_view_header);
         clan_name.setTypeface(PopulatePlayerListView.myTypeface);
         clan_name.setText(ParsePlayerList.thisClan.getC_name());
+
+        //setClan Description
+        clan_description=(TextView)findViewById(R.id.clan_description_text_view_header);
+        clan_description.setTypeface(PopulatePlayerListView.myTypeface);
+        clan_description.setText(ParsePlayerList.thisClan.getC_description());
+
+        //clan type
+        clan_type=(TextView)findViewById(R.id.clan_type_text_view_header);
+        clan_type.setText("type       : "+ParsePlayerList.thisClan.getC_type());
+
+        //clan location
+        clan_location=(TextView)findViewById(R.id.clan_location_text_view_header);
+        clan_location.setText("location: " + ParsePlayerList.thisClan.getC_locationName());
+
+        //war frequency
+        clan_frequency=(TextView)findViewById(R.id.clan_frequency_text_view_header);
+        clan_frequency.setText("war        : " + ParsePlayerList.thisClan.getC_warFrequency());
+
+        //war wins
+        clan_wins=(TextView)findViewById(R.id.clan_wins_text_view_header);
+        clan_wins.setText("wins         : " + ParsePlayerList.thisClan.getC_warWins());
+
+        //clan points
+        clan_point=(TextView)findViewById(R.id.clan_point_text_view_header);
+        clan_point.setText("points       : " + ParsePlayerList.thisClan.getC_clanPoints());
+
+        //clan req  Trophies
+        clan_reqtrop=(TextView)findViewById(R.id.clan_req_trophies_text_view_header);
+        clan_reqtrop.setText("req. trophies : " + ParsePlayerList.thisClan.getC_requiredTrophies());
+
 
         //set clanBadge Image
         clanBadgeImage=(ImageView)findViewById(R.id.clan_badge_image_header);

@@ -71,6 +71,7 @@ public class PopulatePlayerListView extends ArrayAdapter<Player> {
         ClanLevelTextViewId.setTypeface(myTypeface);
         ClanLevelTextViewId.setText(_playerList[position].getClanRank());
 
+
         ImageView imageView = (ImageView) listViewItem.findViewById(R.id.playerBadgeImgView);
         //imageLoader = ImageLoader.getInstance();
         options = new DisplayImageOptions.Builder().cacheInMemory(true)

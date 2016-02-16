@@ -11,7 +11,7 @@
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#FFA210"
+        android:background="#7F5108"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
@@ -19,7 +19,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/clan_detail_header">
+        android:id="@+id/clan_detail_header"
+        android:background="#FFA210">
 
         <ImageView
             android:layout_width="50dp"
@@ -27,7 +28,7 @@
             android:id="@+id/clan_badge_image_header"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_margin="5dp"
+            android:layout_margin="1dp"
             />
 
         <TextView
@@ -35,9 +36,96 @@
             android:layout_height="wrap_content"
             android:id="@+id/clan_name_text_view_header"
             android:text="      "
+            android:textColor="@android:color/black"
             android:layout_toEndOf="@+id/clan_badge_image_header"
             android:layout_toRightOf="@+id/clan_badge_image_header"
-            android:textSize="20sp"/>
+            android:textSize="17sp"/>
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/clan_description_text_view_header"
+        android:textColor="@android:color/black"
+        android:layout_toEndOf="@+id/clan_badge_image_header"
+        android:layout_toRightOf="@+id/clan_badge_image_header"
+        android:layout_below="@+id/clan_name_text_view_header"
+        android:maxLines="4"
+        android:text="Description"
+        android:textSize="10sp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/linear_left"
+            android:layout_toEndOf="@+id/clan_badge_image_header"
+            android:layout_toRightOf="@+id/clan_badge_image_header"
+            android:layout_below="@id/clan_description_text_view_header"
+            android:gravity="left">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/clan_type_text_view_header"
+                android:textColor="@android:color/black"
+                android:text=""
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/clan_location_text_view_header"
+                android:textColor="@android:color/black"
+                android:text=""
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/clan_frequency_text_view_header"
+                android:textColor="@android:color/black"
+                android:text=""
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_toEndOf="@+id/linear_left"
+            android:layout_toRightOf="@+id/linear_left"
+            android:layout_below="@id/clan_description_text_view_header"
+            android:gravity="left">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/clan_wins_text_view_header"
+                android:textColor="@android:color/black"
+                android:text=""
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/clan_point_text_view_header"
+                android:textColor="@android:color/black"
+                android:text=""
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/clan_req_trophies_text_view_header"
+                android:textColor="@android:color/black"
+                android:text=""
+                android:textSize="12sp"/>
+
+
+        </LinearLayout>
+
+
 
     </RelativeLayout>
 

@@ -57,7 +57,13 @@ public class ParsePlayerList {
 
             thisClan=new Clan();
             thisClan.setC_name(clanJsonObject.getString("name"));
-
+            thisClan.setC_description(clanJsonObject.getString("description"));
+            thisClan.setC_type(clanJsonObject.getString("type"));
+            thisClan.setC_locationName(clanJsonObject.getString("locationName"));
+            thisClan.setC_warFrequency(clanJsonObject.getString("warFrequency"));
+            thisClan.setC_warWins(clanJsonObject.getString("warWins"));
+            thisClan.setC_clanPoints(clanJsonObject.getString("clanPoints"));
+            thisClan.setC_requiredTrophies(clanJsonObject.getString("requiredTrophies"));
 
             clanJsonObject=clanJsonObject.getJSONObject("clanBadgeImg");
             thisClan.setC_clanBadge(clanJsonObject.getString("xl"));
